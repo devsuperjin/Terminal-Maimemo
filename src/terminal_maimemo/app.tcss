@@ -1,0 +1,119 @@
+/* Maimemo TUI styles */
+
+Screen {
+    background: #0f1420;
+}
+
+/* ---------------- login ---------------- */
+#login-scroll {
+    width: 1fr;
+    height: 1fr;
+    scrollbar-gutter: stable;
+}
+
+#login-box {
+    width: 74;
+    max-width: 100%;
+    height: auto;
+    margin: 1 2;
+}
+
+#login-box .title {
+    text-align: center;
+    text-style: bold;
+    color: #7ae0ff;
+}
+
+#login-box .subtitle {
+    text-align: center;
+    color: $text-muted;
+    margin-bottom: 1;
+}
+
+#login-box .section {
+    color: #ffd479;
+    text-style: bold;
+    margin-top: 1;
+    margin-bottom: 1;
+}
+
+#login-box Input {
+    height: 3;
+    margin-bottom: 1;
+}
+
+#login-box Button {
+    height: 3;
+    margin-bottom: 1;
+    width: auto;
+}
+
+#login-box Horizontal {
+    height: 3;
+    margin-bottom: 1;
+}
+
+#login-box Horizontal Input {
+    margin-bottom: 0;
+    height: 3;
+    width: 1fr;
+}
+
+#login-box Horizontal Button {
+    margin-bottom: 0;
+    height: 3;
+    width: auto;
+}
+
+#login-status.status {
+    margin-top: 1;
+    text-align: center;
+}
+
+/* ---------------- study ---------------- */
+#study-box {
+    width: 100%;
+    height: 1fr;
+    padding: 1 2;
+}
+
+#progress.progress {
+    color: $text-muted;
+    margin-bottom: 1;
+}
+
+#word.word {
+    text-style: bold;
+    color: #7ae0ff;
+    margin-top: 1;
+    margin-bottom: 1;
+}
+
+#phonetics.phonetics {
+    color: $text-muted;
+    margin-bottom: 2;
+}
+
+#answer.answer {
+    margin-top: 1;
+    margin-bottom: 1;
+    color: $text;
+    background: #141b2b;
+    padding: 0 1;
+}
+
+#extra.extra {
+    color: $text-muted;
+    margin-top: 1;
+}
+
+#status.status {
+    margin-top: 1;
+    color: $text-muted;
+}
+
+/* toast niceties */
+Toast {
+    background: #141b2b;
+    border: round $accent;
+}

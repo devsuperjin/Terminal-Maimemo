@@ -1,0 +1,3416 @@
+{
+ "types": {
+  "Timestamp": [
+   {
+    "name": "seconds",
+    "number": 1,
+    "type": "int64",
+    "repeated": false
+   },
+   {
+    "name": "nanos",
+    "number": 2,
+    "type": "int32",
+    "repeated": false
+   }
+  ],
+  "DayLimit": [
+   {
+    "name": "mode",
+    "number": 4,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "total",
+    "number": 1,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "review",
+    "number": 2,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "learn",
+    "number": 3,
+    "type": "int32",
+    "repeated": false
+   }
+  ],
+  "UserStudySetting": [
+   {
+    "name": "study_order_in_day",
+    "number": 9,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "review_strategy_in_day",
+    "number": 10,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "day_limit_separate_mode",
+    "number": 11,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "separate_day_limit",
+    "number": 8,
+    "type": "bool",
+    "repeated": false
+   },
+   {
+    "name": "day_limit",
+    "number": 1,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "day_review_limit",
+    "number": 2,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "day_new_limit",
+    "number": 3,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "extra_day_limit",
+    "number": 5,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "extra_review_limit",
+    "number": 6,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "extra_new_limit",
+    "number": 7,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "finished_new_count_in_day",
+    "number": 12,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "finished_review_count_in_day",
+    "number": 13,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "first_run_app_date",
+    "number": 4,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "UserStudyPreference": [
+   {
+    "name": "study_order_in_day",
+    "number": 5,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "review_strategy_in_day",
+    "number": 6,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "day_limit_separate_mode",
+    "number": 7,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "separate_day_limit",
+    "number": 4,
+    "type": "bool",
+    "repeated": false
+   },
+   {
+    "name": "extra_day_limit",
+    "number": 1,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "extra_review_limit",
+    "number": 2,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "extra_new_limit",
+    "number": 3,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "finished_new_count_in_day",
+    "number": 8,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "finished_review_count_in_day",
+    "number": 9,
+    "type": "int32",
+    "repeated": false
+   }
+  ],
+  "Lsr": [
+   {
+    "name": "last_response",
+    "number": 9,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "study_method",
+    "number": 19,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "uid",
+    "number": 1,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "voc_id",
+    "number": 3,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "frequency",
+    "number": 4,
+    "type": "double",
+    "repeated": false
+   },
+   {
+    "name": "fm",
+    "number": 5,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "last_interval",
+    "number": 7,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "blocked_code",
+    "number": 14,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "is_blocked_indsr",
+    "number": 15,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "been_blocked",
+    "number": 16,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "is_new",
+    "number": 18,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "add_order",
+    "number": 21,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "last_real_interval",
+    "number": 22,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "last_difficulty",
+    "number": 24,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "last_is_matrix",
+    "number": 25,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "last_matrix_version",
+    "number": 26,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "last_scheduler_version",
+    "number": 27,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "been_advanced",
+    "number": 28,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "factor",
+    "number": 29,
+    "type": "double",
+    "repeated": false
+   },
+   {
+    "name": "been_temp",
+    "number": 30,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "postpone_interval",
+    "number": 32,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "new_voc_id",
+    "number": 2,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "fm_history_byday",
+    "number": 6,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "interval_history_byday",
+    "number": 8,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "response_history_byday",
+    "number": 10,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "first_study_date",
+    "number": 11,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "last_study_date",
+    "number": 12,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "next_study_date",
+    "number": 13,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "block_date",
+    "number": 17,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "add_date",
+    "number": 20,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "real_interval_history_byday",
+    "number": 23,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "study_method_history_byday",
+    "number": 31,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "interpretations",
+    "number": 33,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "phrases",
+    "number": 34,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "notes",
+    "number": 35,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "Dsr": [
+   {
+    "name": "first_response",
+    "number": 8,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "last_response",
+    "number": 9,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "study_method",
+    "number": 19,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "uid",
+    "number": 1,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "appear_order",
+    "number": 3,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "fm",
+    "number": 4,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "interval_inday",
+    "number": 5,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "interval_byday",
+    "number": 6,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "deviated_interval_byday",
+    "number": 7,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "is_blocked",
+    "number": 12,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "blocked_code",
+    "number": 13,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "is_new",
+    "number": 14,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "is_finished",
+    "number": 15,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "is_matrix",
+    "number": 16,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "recall_time",
+    "number": 17,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "study_time",
+    "number": 18,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "is_advanced",
+    "number": 20,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "factor",
+    "number": 21,
+    "type": "double",
+    "repeated": false
+   },
+   {
+    "name": "is_fill",
+    "number": 22,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "is_algorithm",
+    "number": 23,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "new_voc_id",
+    "number": 2,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "response_history_inday",
+    "number": 10,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "record_time",
+    "number": 11,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "Ssr": [
+   {
+    "name": "uid",
+    "number": 2,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "count_words_studied",
+    "number": 3,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "count_today_new",
+    "number": 4,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "count_today_revision",
+    "number": 5,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "count_today_well_familiar",
+    "number": 6,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "count_today_familiar",
+    "number": 7,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "count_today_uncertain",
+    "number": 8,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "count_today_forget",
+    "number": 9,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "count_today_sticking",
+    "number": 10,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "count_today_unwanted",
+    "number": 11,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "today_study_time",
+    "number": 18,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "today_study_time_ms",
+    "number": 19,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "fm_10",
+    "number": 20,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "fm_30",
+    "number": 21,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "fm_60",
+    "number": 22,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "fm_90",
+    "number": 23,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "date",
+    "number": 1,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "new_vocs_today_well_familiar",
+    "number": 12,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "new_vocs_today_familiar",
+    "number": 13,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "new_vocs_today_uncertain",
+    "number": 14,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "new_vocs_today_forget",
+    "number": 15,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "vocs_today_sticking",
+    "number": 16,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "vocs_today_unwanted",
+    "number": 17,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "StudyAlgorithmConfig": [
+   {
+    "name": "dsr_interval_inday",
+    "number": 1,
+    "type": "StudyAlgorithmConfig_DsrIntervalInday",
+    "repeated": false
+   },
+   {
+    "name": "dsr_interval_byday",
+    "number": 2,
+    "type": "StudyAlgorithmConfig_DsrIntervalByDay",
+    "repeated": false
+   },
+   {
+    "name": "memory_level",
+    "number": 3,
+    "type": "StudyAlgorithmConfig_MemoryLevel",
+    "repeated": false
+   }
+  ],
+  "StudyAlgorithmConfig_DsrIntervalInday": [
+   {
+    "name": "upper_limit",
+    "number": 1,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "lower_limit",
+    "number": 2,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "scheduler_version",
+    "number": 3,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "familiar_score",
+    "number": 4,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "vague_score",
+    "number": 5,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "forget_score",
+    "number": 6,
+    "type": "int32",
+    "repeated": false
+   }
+  ],
+  "StudyAlgorithmConfig_DsrIntervalByDay": [],
+  "StudyAlgorithmConfig_DsrIntervalByDay_DifficultyMaxIntervalEntry": [
+   {
+    "name": "value",
+    "number": 2,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "key",
+    "number": 1,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "StudyAlgorithmConfig_MemoryLevel": [
+   {
+    "name": "level",
+    "number": 1,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "description",
+    "number": 2,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "Fsr2": [
+   {
+    "name": "uid",
+    "number": 1,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "content",
+    "number": 2,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "track_id",
+    "number": 3,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "Svs": [
+   {
+    "name": "voc_id",
+    "number": 1,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "add_book_id",
+    "number": 2,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "add_select_method",
+    "number": 3,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "last_review_interpretations",
+    "number": 4,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "last_review_phrases",
+    "number": 5,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "last_review_notes",
+    "number": 6,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "TimeRange": [
+   {
+    "name": "start",
+    "number": 1,
+    "type": "google.protobuf.Timestamp",
+    "repeated": false
+   },
+   {
+    "name": "end",
+    "number": 2,
+    "type": "google.protobuf.Timestamp",
+    "repeated": false
+   }
+  ],
+  "StudyProgress": [
+   {
+    "name": "finished",
+    "number": 1,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "total",
+    "number": 2,
+    "type": "int32",
+    "repeated": false
+   }
+  ],
+  "AddWordsRequest": [
+   {
+    "name": "study_order",
+    "number": 2,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "study_method",
+    "number": 3,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "day_limit",
+    "number": 4,
+    "type": "DayLimit",
+    "repeated": false
+   },
+   {
+    "name": "extra_day_limit",
+    "number": 5,
+    "type": "DayLimit",
+    "repeated": false
+   },
+   {
+    "name": "voc_states",
+    "number": 6,
+    "type": "Svs",
+    "repeated": false
+   },
+   {
+    "name": "words",
+    "number": 1,
+    "type": "AddWordsRequest_Word",
+    "repeated": true
+   }
+  ],
+  "AddWordsRequest_Word": [
+   {
+    "name": "voc_id",
+    "number": 2,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "difficulty",
+    "number": 3,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "frequency",
+    "number": 4,
+    "type": "double",
+    "repeated": false
+   },
+   {
+    "name": "id",
+    "number": 1,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "AddWordsResponse": [
+   {
+    "name": "added_count",
+    "number": 1,
+    "type": "int32",
+    "repeated": false
+   }
+  ],
+  "DeleteWordsRequest": [
+   {
+    "name": "day_limit",
+    "number": 2,
+    "type": "DayLimit",
+    "repeated": false
+   },
+   {
+    "name": "extra_day_limit",
+    "number": 3,
+    "type": "DayLimit",
+    "repeated": false
+   },
+   {
+    "name": "voc_ids",
+    "number": 1,
+    "type": "string",
+    "repeated": true
+   }
+  ],
+  "DeleteWordsResponse": [
+   {
+    "name": "deleted_count",
+    "number": 2,
+    "type": "int32",
+    "repeated": false
+   }
+  ],
+  "PrepareNewDayRequest": [
+   {
+    "name": "study_order",
+    "number": 1,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "review_strategy",
+    "number": 2,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "day_limit_separate_mode",
+    "number": 4,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "day_limit",
+    "number": 3,
+    "type": "DayLimit",
+    "repeated": false
+   }
+  ],
+  "PrepareNewDayResponse": [],
+  "ChangeStudyOrderRequest": [
+   {
+    "name": "study_order",
+    "number": 1,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "review_strategy",
+    "number": 2,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "day_limit_separate_mode",
+    "number": 6,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "day_limit",
+    "number": 3,
+    "type": "DayLimit",
+    "repeated": false
+   },
+   {
+    "name": "extra_day_limit",
+    "number": 4,
+    "type": "DayLimit",
+    "repeated": false
+   },
+   {
+    "name": "skip_update_settings",
+    "number": 10,
+    "type": "bool",
+    "repeated": false
+   }
+  ],
+  "ChangeStudyOrderResponse": [],
+  "AdvanceReviewRequest": [
+   {
+    "name": "day_limit",
+    "number": 4,
+    "type": "DayLimit",
+    "repeated": false
+   },
+   {
+    "name": "extra_day_limit",
+    "number": 5,
+    "type": "DayLimit",
+    "repeated": false
+   },
+   {
+    "name": "voc_ids",
+    "number": 1,
+    "type": "string",
+    "repeated": true
+   },
+   {
+    "name": "fill",
+    "number": 6,
+    "type": "bool",
+    "repeated": false
+   },
+   {
+    "name": "count",
+    "number": 3,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "behind_voc_id",
+    "number": 2,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "AdvanceReviewResponse": [
+   {
+    "name": "advanced_count",
+    "number": 1,
+    "type": "int32",
+    "repeated": false
+   }
+  ],
+  "MarkWellFamiliarRequest": [
+   {
+    "name": "words",
+    "number": 1,
+    "type": "MarkWellFamiliarRequest_Word",
+    "repeated": true
+   },
+   {
+    "name": "matrix_version",
+    "number": 2,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "MarkWellFamiliarRequest_Word": [
+   {
+    "name": "difficulty",
+    "number": 2,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "id",
+    "number": 1,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "MarkWellFamiliarResponse": [
+   {
+    "name": "count",
+    "number": 1,
+    "type": "int32",
+    "repeated": false
+   }
+  ],
+  "UnmarkWellFamiliarRequest": [
+   {
+    "name": "words",
+    "number": 1,
+    "type": "UnmarkWellFamiliarRequest_Word",
+    "repeated": true
+   },
+   {
+    "name": "matrix_version",
+    "number": 2,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "UnmarkWellFamiliarRequest_Word": [
+   {
+    "name": "difficulty",
+    "number": 2,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "id",
+    "number": 1,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "UnmarkWellFamiliarResponse": [
+   {
+    "name": "count",
+    "number": 1,
+    "type": "int32",
+    "repeated": false
+   }
+  ],
+  "SuspendWordsRequest": [
+   {
+    "name": "day_limit",
+    "number": 2,
+    "type": "DayLimit",
+    "repeated": false
+   },
+   {
+    "name": "extra_day_limit",
+    "number": 3,
+    "type": "DayLimit",
+    "repeated": false
+   },
+   {
+    "name": "voc_ids",
+    "number": 1,
+    "type": "string",
+    "repeated": true
+   }
+  ],
+  "SuspendWordsResponse": [
+   {
+    "name": "count",
+    "number": 1,
+    "type": "int32",
+    "repeated": false
+   }
+  ],
+  "UnsuspendWordsRequest": [
+   {
+    "name": "day_limit",
+    "number": 2,
+    "type": "DayLimit",
+    "repeated": false
+   },
+   {
+    "name": "extra_day_limit",
+    "number": 3,
+    "type": "DayLimit",
+    "repeated": false
+   },
+   {
+    "name": "voc_ids",
+    "number": 1,
+    "type": "string",
+    "repeated": true
+   }
+  ],
+  "UnsuspendWordsResponse": [
+   {
+    "name": "count",
+    "number": 1,
+    "type": "int32",
+    "repeated": false
+   }
+  ],
+  "ChangeDayLimitRequest": [
+   {
+    "name": "study_order",
+    "number": 1,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "review_strategy",
+    "number": 2,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "day_limit_separate_mode",
+    "number": 6,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "day_limit",
+    "number": 3,
+    "type": "DayLimit",
+    "repeated": false
+   },
+   {
+    "name": "extra_day_limit",
+    "number": 4,
+    "type": "DayLimit",
+    "repeated": false
+   },
+   {
+    "name": "is_update_extra_day_limit",
+    "number": 7,
+    "type": "bool",
+    "repeated": false
+   }
+  ],
+  "ChangeDayLimitResponse": [],
+  "HandleStudyResponseRequest": [
+   {
+    "name": "study_method",
+    "number": 5,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "response",
+    "number": 8,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "interpretations",
+    "number": 30,
+    "type": "string",
+    "repeated": true
+   },
+   {
+    "name": "phrases",
+    "number": 31,
+    "type": "string",
+    "repeated": true
+   },
+   {
+    "name": "notes",
+    "number": 32,
+    "type": "string",
+    "repeated": true
+   },
+   {
+    "name": "is_first_response",
+    "number": 6,
+    "type": "bool",
+    "repeated": false
+   },
+   {
+    "name": "is_matrix",
+    "number": 7,
+    "type": "bool",
+    "repeated": false
+   },
+   {
+    "name": "is_finish_vague_voc_enabled",
+    "number": 12,
+    "type": "bool",
+    "repeated": false
+   },
+   {
+    "name": "is_interval_displayed",
+    "number": 13,
+    "type": "bool",
+    "repeated": false
+   },
+   {
+    "name": "dry_run",
+    "number": 40,
+    "type": "bool",
+    "repeated": false
+   },
+   {
+    "name": "upload_fsr",
+    "number": 41,
+    "type": "bool",
+    "repeated": false
+   },
+   {
+    "name": "voc_difficulty",
+    "number": 3,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "recall_duration",
+    "number": 10,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "study_duration",
+    "number": 11,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "voc_id",
+    "number": 2,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "matrix_version",
+    "number": 14,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "HandleStudyResponseResponse": [
+   {
+    "name": "next_interval_by_day",
+    "number": 1,
+    "type": "int32",
+    "repeated": false
+   }
+  ],
+  "ReplanStudyRequest": [
+   {
+    "name": "review_strategy",
+    "number": 2,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "study_order",
+    "number": 3,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "strategy",
+    "number": 1,
+    "type": "ReplanStudyRequest_Strategy",
+    "repeated": false
+   },
+   {
+    "name": "strategy_v2",
+    "number": 10,
+    "type": "ReplanStudyRequest_StrategyV2",
+    "repeated": false
+   },
+   {
+    "name": "day_limit",
+    "number": 4,
+    "type": "DayLimit",
+    "repeated": false
+   },
+   {
+    "name": "extra_day_limit",
+    "number": 5,
+    "type": "DayLimit",
+    "repeated": false
+   },
+   {
+    "name": "dry_run",
+    "number": 11,
+    "type": "bool",
+    "repeated": false
+   },
+   {
+    "name": "dry_run_days",
+    "number": 12,
+    "type": "int32",
+    "repeated": false
+   }
+  ],
+  "ReplanStudyRequest_Strategy": [
+   {
+    "name": "factor1",
+    "number": 1,
+    "type": "float",
+    "repeated": false
+   },
+   {
+    "name": "factor2",
+    "number": 2,
+    "type": "float",
+    "repeated": false
+   },
+   {
+    "name": "review_lower_limit",
+    "number": 3,
+    "type": "int32",
+    "repeated": false
+   }
+  ],
+  "ReplanStudyRequest_StrategyV2": [
+   {
+    "name": "disperse_ratio",
+    "number": 1,
+    "type": "float",
+    "repeated": false
+   },
+   {
+    "name": "spread_days",
+    "number": 2,
+    "type": "int32",
+    "repeated": false
+   }
+  ],
+  "ReplanStudyResponse": [
+   {
+    "name": "dry_run_result",
+    "number": 2,
+    "type": "ReplanStudyResponse_Day",
+    "repeated": true
+   },
+   {
+    "name": "postponed_count",
+    "number": 1,
+    "type": "int32",
+    "repeated": false
+   }
+  ],
+  "ReplanStudyResponse_Day": [
+   {
+    "name": "day",
+    "number": 1,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "count",
+    "number": 2,
+    "type": "int32",
+    "repeated": false
+   }
+  ],
+  "UndoReplanStudyRequest": [
+   {
+    "name": "study_order",
+    "number": 1,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "review_strategy",
+    "number": 2,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "day_limit_separate_mode",
+    "number": 6,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "day_limit",
+    "number": 3,
+    "type": "DayLimit",
+    "repeated": false
+   }
+  ],
+  "UndoReplanStudyResponse": [
+   {
+    "name": "ok",
+    "number": 1,
+    "type": "bool",
+    "repeated": false
+   }
+  ],
+  "StudyOpContextExperiment": [
+   {
+    "name": "name",
+    "number": 1,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "values",
+    "number": 2,
+    "type": "string",
+    "repeated": true
+   }
+  ],
+  "StudyOpContext": [
+   {
+    "name": "tz_offset",
+    "number": 2,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "experiments",
+    "number": 1,
+    "type": "StudyOpContextExperiment",
+    "repeated": true
+   }
+  ],
+  "StudyOp": [
+   {
+    "name": "op",
+    "number": 3,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "prepare_new_day",
+    "number": 10,
+    "type": "PrepareNewDayRequest",
+    "repeated": false
+   },
+   {
+    "name": "add_words",
+    "number": 11,
+    "type": "AddWordsRequest",
+    "repeated": false
+   },
+   {
+    "name": "delete_words",
+    "number": 12,
+    "type": "DeleteWordsRequest",
+    "repeated": false
+   },
+   {
+    "name": "handle_study_response",
+    "number": 13,
+    "type": "HandleStudyResponseRequest",
+    "repeated": false
+   },
+   {
+    "name": "change_study_order",
+    "number": 14,
+    "type": "ChangeStudyOrderRequest",
+    "repeated": false
+   },
+   {
+    "name": "advance_review",
+    "number": 15,
+    "type": "AdvanceReviewRequest",
+    "repeated": false
+   },
+   {
+    "name": "mark_well_familiar",
+    "number": 16,
+    "type": "MarkWellFamiliarRequest",
+    "repeated": false
+   },
+   {
+    "name": "unmark_well_familiar",
+    "number": 17,
+    "type": "UnmarkWellFamiliarRequest",
+    "repeated": false
+   },
+   {
+    "name": "suspend_words",
+    "number": 18,
+    "type": "SuspendWordsRequest",
+    "repeated": false
+   },
+   {
+    "name": "unsuspend_words",
+    "number": 19,
+    "type": "UnsuspendWordsRequest",
+    "repeated": false
+   },
+   {
+    "name": "change_day_limit",
+    "number": 20,
+    "type": "ChangeDayLimitRequest",
+    "repeated": false
+   },
+   {
+    "name": "replan_study",
+    "number": 21,
+    "type": "ReplanStudyRequest",
+    "repeated": false
+   },
+   {
+    "name": "undo_replan_study",
+    "number": 22,
+    "type": "UndoReplanStudyRequest",
+    "repeated": false
+   },
+   {
+    "name": "context",
+    "number": 100,
+    "type": "StudyOpContext",
+    "repeated": false
+   },
+   {
+    "name": "created_time",
+    "number": 4,
+    "type": "int64",
+    "repeated": false
+   }
+  ],
+  "StudyOpResult": [
+   {
+    "name": "op",
+    "number": 3,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "prepare_new_day",
+    "number": 10,
+    "type": "PrepareNewDayResponse",
+    "repeated": false
+   },
+   {
+    "name": "add_words",
+    "number": 11,
+    "type": "AddWordsResponse",
+    "repeated": false
+   },
+   {
+    "name": "delete_words",
+    "number": 12,
+    "type": "DeleteWordsResponse",
+    "repeated": false
+   },
+   {
+    "name": "handle_study_response",
+    "number": 13,
+    "type": "HandleStudyResponseResponse",
+    "repeated": false
+   },
+   {
+    "name": "change_study_order",
+    "number": 14,
+    "type": "ChangeStudyOrderResponse",
+    "repeated": false
+   },
+   {
+    "name": "advance_review",
+    "number": 15,
+    "type": "AdvanceReviewResponse",
+    "repeated": false
+   },
+   {
+    "name": "mark_well_familiar",
+    "number": 16,
+    "type": "MarkWellFamiliarResponse",
+    "repeated": false
+   },
+   {
+    "name": "unmark_well_familiar",
+    "number": 17,
+    "type": "UnmarkWellFamiliarResponse",
+    "repeated": false
+   },
+   {
+    "name": "suspend_words",
+    "number": 18,
+    "type": "SuspendWordsResponse",
+    "repeated": false
+   },
+   {
+    "name": "unsuspend_words",
+    "number": 19,
+    "type": "UnsuspendWordsResponse",
+    "repeated": false
+   },
+   {
+    "name": "change_day_limit",
+    "number": 20,
+    "type": "ChangeDayLimitResponse",
+    "repeated": false
+   },
+   {
+    "name": "replan_study",
+    "number": 21,
+    "type": "ReplanStudyResponse",
+    "repeated": false
+   },
+   {
+    "name": "undo_replan_study",
+    "number": 22,
+    "type": "UndoReplanStudyResponse",
+    "repeated": false
+   },
+   {
+    "name": "created_time",
+    "number": 4,
+    "type": "int64",
+    "repeated": false
+   }
+  ],
+  "SyncCheckpointBrief": [
+   {
+    "name": "checkpoint",
+    "number": 1,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "op_revision",
+    "number": 2,
+    "type": "int32",
+    "repeated": false
+   }
+  ],
+  "SyncDeviceInfo": [
+   {
+    "name": "install_id",
+    "number": 2,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "device_id",
+    "number": 1,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "device_name",
+    "number": 3,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "os",
+    "number": 4,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "app_version",
+    "number": 5,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "SyncCheckpointInfo": [
+   {
+    "name": "last_op_id",
+    "number": 5,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "last_device",
+    "number": 9,
+    "type": "SyncDeviceInfo",
+    "repeated": false
+   },
+   {
+    "name": "checkpoint",
+    "number": 1,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "op_revision",
+    "number": 2,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "last_op_time",
+    "number": 4,
+    "type": "int64",
+    "repeated": false
+   },
+   {
+    "name": "study_module_version",
+    "number": 3,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "created_time",
+    "number": 10,
+    "type": "google.protobuf.Timestamp",
+    "repeated": false
+   },
+   {
+    "name": "updated_time",
+    "number": 11,
+    "type": "google.protobuf.Timestamp",
+    "repeated": false
+   }
+  ],
+  "SyncWorkspaceOptions": [
+   {
+    "name": "op_logging_enabled",
+    "number": 1,
+    "type": "bool",
+    "repeated": false
+   },
+   {
+    "name": "oplog_deliver_start_op_revision",
+    "number": 2,
+    "type": "int32",
+    "repeated": false
+   }
+  ],
+  "SyncCheckpointFull": [
+   {
+    "name": "last_op_id",
+    "number": 6,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "archive_file",
+    "number": 12,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "status",
+    "number": 7,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "options",
+    "number": 10,
+    "type": "SyncWorkspaceOptions",
+    "repeated": false
+   },
+   {
+    "name": "last_device",
+    "number": 13,
+    "type": "SyncDeviceInfo",
+    "repeated": false
+   },
+   {
+    "name": "checkpoint",
+    "number": 2,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "op_revision",
+    "number": 3,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "last_op_time",
+    "number": 5,
+    "type": "int64",
+    "repeated": false
+   },
+   {
+    "name": "start_op_revision",
+    "number": 8,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "archive_status",
+    "number": 11,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "id",
+    "number": 1,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "study_module_version",
+    "number": 4,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "workdir",
+    "number": 9,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "created_time",
+    "number": 20,
+    "type": "google.protobuf.Timestamp",
+    "repeated": false
+   },
+   {
+    "name": "updated_time",
+    "number": 21,
+    "type": "google.protobuf.Timestamp",
+    "repeated": false
+   },
+   {
+    "name": "archived_time",
+    "number": 22,
+    "type": "google.protobuf.Timestamp",
+    "repeated": false
+   },
+   {
+    "name": "deleted_time",
+    "number": 23,
+    "type": "google.protobuf.Timestamp",
+    "repeated": false
+   }
+  ],
+  "SyncStudyDurationInfo": [
+   {
+    "name": "study_duration",
+    "number": 2,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "ssr_date",
+    "number": 1,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "SyncStudyOp": [
+   {
+    "name": "op",
+    "number": 3,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "prepare_new_day",
+    "number": 10,
+    "type": "PrepareNewDayRequest",
+    "repeated": false
+   },
+   {
+    "name": "add_words",
+    "number": 11,
+    "type": "AddWordsRequest",
+    "repeated": false
+   },
+   {
+    "name": "delete_words",
+    "number": 12,
+    "type": "DeleteWordsRequest",
+    "repeated": false
+   },
+   {
+    "name": "handle_study_response",
+    "number": 13,
+    "type": "HandleStudyResponseRequest",
+    "repeated": false
+   },
+   {
+    "name": "change_study_order",
+    "number": 14,
+    "type": "ChangeStudyOrderRequest",
+    "repeated": false
+   },
+   {
+    "name": "advance_review",
+    "number": 15,
+    "type": "AdvanceReviewRequest",
+    "repeated": false
+   },
+   {
+    "name": "mark_well_familiar",
+    "number": 16,
+    "type": "MarkWellFamiliarRequest",
+    "repeated": false
+   },
+   {
+    "name": "unmark_well_familiar",
+    "number": 17,
+    "type": "UnmarkWellFamiliarRequest",
+    "repeated": false
+   },
+   {
+    "name": "suspend_words",
+    "number": 18,
+    "type": "SuspendWordsRequest",
+    "repeated": false
+   },
+   {
+    "name": "unsuspend_words",
+    "number": 19,
+    "type": "UnsuspendWordsRequest",
+    "repeated": false
+   },
+   {
+    "name": "change_day_limit",
+    "number": 20,
+    "type": "ChangeDayLimitRequest",
+    "repeated": false
+   },
+   {
+    "name": "replan_study",
+    "number": 21,
+    "type": "ReplanStudyRequest",
+    "repeated": false
+   },
+   {
+    "name": "undo_replan_study",
+    "number": 22,
+    "type": "UndoReplanStudyRequest",
+    "repeated": false
+   },
+   {
+    "name": "created_time",
+    "number": 4,
+    "type": "int64",
+    "repeated": false
+   },
+   {
+    "name": "checkpoint",
+    "number": 5,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "op_revision",
+    "number": 6,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "study_module_version",
+    "number": 7,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "WebStudyInterpretation": [
+   {
+    "name": "tags",
+    "number": 5,
+    "type": "string",
+    "repeated": true
+   },
+   {
+    "name": "creator_id",
+    "number": 10,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "id",
+    "number": 1,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "voc_id",
+    "number": 2,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "interpretation",
+    "number": 3,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "WebStudyPhrase": [
+   {
+    "name": "tags",
+    "number": 7,
+    "type": "string",
+    "repeated": true
+   },
+   {
+    "name": "creator_id",
+    "number": 10,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "id",
+    "number": 1,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "voc_id",
+    "number": 2,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "phrase",
+    "number": 3,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "interpretation",
+    "number": 4,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "origin",
+    "number": 5,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "WebStudyNote": [
+   {
+    "name": "tags",
+    "number": 5,
+    "type": "string",
+    "repeated": true
+   },
+   {
+    "name": "creator_id",
+    "number": 10,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "id",
+    "number": 1,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "voc_id",
+    "number": 2,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "type",
+    "number": 3,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "note",
+    "number": 4,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "WebStudySpeech": [
+   {
+    "name": "id",
+    "number": 1,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "accent",
+    "number": 2,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "url",
+    "number": 3,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "WebStudyWord": [
+   {
+    "name": "pronunciations",
+    "number": 11,
+    "type": "WebStudySpeech",
+    "repeated": true
+   },
+   {
+    "name": "tags",
+    "number": 10,
+    "type": "string",
+    "repeated": true
+   },
+   {
+    "name": "voc_id",
+    "number": 2,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "difficulty",
+    "number": 7,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "id",
+    "number": 1,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "spelling",
+    "number": 3,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "phonetic_us",
+    "number": 4,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "phonetic_uk",
+    "number": 5,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "hyphenation",
+    "number": 6,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "WebStudyBook": [
+   {
+    "name": "tags",
+    "number": 20,
+    "type": "string",
+    "repeated": true
+   },
+   {
+    "name": "published_voc_count",
+    "number": 22,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "id",
+    "number": 1,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "catalog_id",
+    "number": 2,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "catalog_name",
+    "number": 3,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "name",
+    "number": 4,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "release_time",
+    "number": 21,
+    "type": "google.protobuf.Timestamp",
+    "repeated": false
+   }
+  ],
+  "WebStudyUserSetting": [
+   {
+    "name": "code",
+    "number": 1,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "value",
+    "number": 2,
+    "type": "google.protobuf.Value",
+    "repeated": false
+   },
+   {
+    "name": "updated_time",
+    "number": 3,
+    "type": "google.protobuf.Timestamp",
+    "repeated": false
+   }
+  ],
+  "WebStudyDictionarySettings": [
+   {
+    "name": "dictionary",
+    "number": 5,
+    "type": "WebStudyDictionarySettings_Dictionary",
+    "repeated": true
+   },
+   {
+    "name": "enabled",
+    "number": 1,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "max",
+    "number": 3,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "min",
+    "number": 4,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "updated_time",
+    "number": 2,
+    "type": "google.protobuf.Timestamp",
+    "repeated": false
+   }
+  ],
+  "WebStudyDictionarySettings_Dictionary": [
+   {
+    "name": "dictionary_name",
+    "number": 1,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "dictionary_id",
+    "number": 2,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "query_format",
+    "number": 4,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "placeholder",
+    "number": 5,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "nick_name",
+    "number": 6,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "space_replacement",
+    "number": 7,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "WebStudyMemoryHistoryItem": [
+   {
+    "name": "type",
+    "number": 1,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "day",
+    "number": 2,
+    "type": "int32",
+    "repeated": false
+   }
+  ],
+  "WebStudyMemoryHistory": [
+   {
+    "name": "items",
+    "number": 2,
+    "type": "WebStudyMemoryHistoryItem",
+    "repeated": true
+   },
+   {
+    "name": "is_error",
+    "number": 1,
+    "type": "bool",
+    "repeated": false
+   },
+   {
+    "name": "study_times",
+    "number": 5,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "first_study_date",
+    "number": 3,
+    "type": "google.protobuf.Timestamp",
+    "repeated": false
+   },
+   {
+    "name": "last_study_date",
+    "number": 4,
+    "type": "google.protobuf.Timestamp",
+    "repeated": false
+   }
+  ],
+  "WebStudyUser": [
+   {
+    "name": "id",
+    "number": 1,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "name",
+    "number": 2,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "avatar",
+    "number": 3,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "Struct": [],
+  "Struct_FieldsEntry": [
+   {
+    "name": "key",
+    "number": 1,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "value",
+    "number": 2,
+    "type": "google.protobuf.Value",
+    "repeated": false
+   }
+  ],
+  "Value": [
+   {
+    "name": "number_value",
+    "number": 2,
+    "type": "double",
+    "repeated": false
+   },
+   {
+    "name": "string_value",
+    "number": 3,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "bool_value",
+    "number": 4,
+    "type": "bool",
+    "repeated": false
+   },
+   {
+    "name": "null_value",
+    "number": 1,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "struct_value",
+    "number": 5,
+    "type": "Struct",
+    "repeated": false
+   },
+   {
+    "name": "list_value",
+    "number": 6,
+    "type": "ListValue",
+    "repeated": false
+   }
+  ],
+  "ListValue": [
+   {
+    "name": "values",
+    "number": 1,
+    "type": "Value",
+    "repeated": true
+   }
+  ],
+  "WsWebStudyInitStudyRequest": [],
+  "WsWebStudyInitStudyResponse": [
+   {
+    "name": "checkpoint",
+    "number": 2,
+    "type": "SyncCheckpointBrief",
+    "repeated": false
+   },
+   {
+    "name": "dictionary_settings",
+    "number": 4,
+    "type": "WebStudyDictionarySettings",
+    "repeated": false
+   },
+   {
+    "name": "user",
+    "number": 6,
+    "type": "WebStudyUser",
+    "repeated": false
+   },
+   {
+    "name": "settings",
+    "number": 3,
+    "type": "WebStudyUserSetting",
+    "repeated": true
+   },
+   {
+    "name": "privileges",
+    "number": 5,
+    "type": "string",
+    "repeated": true
+   },
+   {
+    "name": "ok",
+    "number": 1,
+    "type": "bool",
+    "repeated": false
+   }
+  ],
+  "WsWebStudyGetWordRequest": [
+   {
+    "name": "back",
+    "number": 1,
+    "type": "bool",
+    "repeated": false
+   }
+  ],
+  "WsWebStudyGetWordResponse": [
+   {
+    "name": "word",
+    "number": 1,
+    "type": "WebStudyWord",
+    "repeated": false
+   },
+   {
+    "name": "progress",
+    "number": 22,
+    "type": "StudyProgress",
+    "repeated": false
+   },
+   {
+    "name": "memory_history",
+    "number": 26,
+    "type": "WebStudyMemoryHistory",
+    "repeated": false
+   },
+   {
+    "name": "checkpoint",
+    "number": 40,
+    "type": "SyncCheckpointBrief",
+    "repeated": false
+   },
+   {
+    "name": "interpretations",
+    "number": 2,
+    "type": "WebStudyInterpretation",
+    "repeated": true
+   },
+   {
+    "name": "phrases",
+    "number": 3,
+    "type": "WebStudyPhrase",
+    "repeated": true
+   },
+   {
+    "name": "notes",
+    "number": 4,
+    "type": "WebStudyNote",
+    "repeated": true
+   },
+   {
+    "name": "response_predicts",
+    "number": 25,
+    "type": "WsWebStudyGetWordResponse_Predict",
+    "repeated": true
+   },
+   {
+    "name": "is_first_response",
+    "number": 20,
+    "type": "bool",
+    "repeated": false
+   },
+   {
+    "name": "is_first_show",
+    "number": 21,
+    "type": "bool",
+    "repeated": false
+   },
+   {
+    "name": "has_prev_word",
+    "number": 24,
+    "type": "bool",
+    "repeated": false
+   },
+   {
+    "name": "study_time_ms",
+    "number": 23,
+    "type": "int32",
+    "repeated": false
+   }
+  ],
+  "WsWebStudyGetWordResponse_Predict": [
+   {
+    "name": "first",
+    "number": 1,
+    "type": "bool",
+    "repeated": false
+   },
+   {
+    "name": "days",
+    "number": 2,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "progress",
+    "number": 3,
+    "type": "float",
+    "repeated": false
+   }
+  ],
+  "WsWebStudySubmitResponseRequest": [
+   {
+    "name": "response",
+    "number": 2,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "study_method",
+    "number": 3,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "recall_duration",
+    "number": 4,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "study_duration",
+    "number": 5,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "voc_id",
+    "number": 1,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "WsWebStudySubmitResponseResponse": [
+   {
+    "name": "next",
+    "number": 1,
+    "type": "WsWebStudyGetWordResponse",
+    "repeated": false
+   }
+  ],
+  "WsWebStudyDeleteWordsRequest": [
+   {
+    "name": "voc_ids",
+    "number": 1,
+    "type": "string",
+    "repeated": true
+   }
+  ],
+  "WsWebStudyDeleteWordsResponse": [
+   {
+    "name": "deleted_count",
+    "number": 2,
+    "type": "int32",
+    "repeated": false
+   }
+  ],
+  "WsWebStudyGetStudyStatesRequest": [
+   {
+    "name": "blocked_count",
+    "number": 1,
+    "type": "bool",
+    "repeated": false
+   },
+   {
+    "name": "learned_count",
+    "number": 2,
+    "type": "bool",
+    "repeated": false
+   },
+   {
+    "name": "voc_limit",
+    "number": 3,
+    "type": "bool",
+    "repeated": false
+   },
+   {
+    "name": "level",
+    "number": 4,
+    "type": "bool",
+    "repeated": false
+   },
+   {
+    "name": "study_book",
+    "number": 5,
+    "type": "bool",
+    "repeated": false
+   },
+   {
+    "name": "book_learned_count",
+    "number": 6,
+    "type": "bool",
+    "repeated": false
+   },
+   {
+    "name": "day_limit",
+    "number": 7,
+    "type": "bool",
+    "repeated": false
+   },
+   {
+    "name": "study_progress",
+    "number": 8,
+    "type": "bool",
+    "repeated": false
+   },
+   {
+    "name": "best_new_count",
+    "number": 9,
+    "type": "bool",
+    "repeated": false
+   }
+  ],
+  "WsWebStudyGetStudyStatesResponse": [
+   {
+    "name": "study_book",
+    "number": 5,
+    "type": "WebStudyBook",
+    "repeated": false
+   },
+   {
+    "name": "day_limit",
+    "number": 7,
+    "type": "DayLimit",
+    "repeated": false
+   },
+   {
+    "name": "study_progress",
+    "number": 8,
+    "type": "StudyProgress",
+    "repeated": false
+   },
+   {
+    "name": "blocked_count",
+    "number": 1,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "learned_count",
+    "number": 2,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "voc_limit",
+    "number": 3,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "level",
+    "number": 4,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "book_learned_count",
+    "number": 6,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "best_new_count",
+    "number": 9,
+    "type": "int32",
+    "repeated": false
+   }
+  ],
+  "WsWebStudyReviewMoreRequest": [
+   {
+    "name": "count",
+    "number": 1,
+    "type": "int32",
+    "repeated": false
+   }
+  ],
+  "WsWebStudyReviewMoreResponse": [],
+  "WsWebStudyPrecheckSignRequest": [],
+  "WsWebStudyPrecheckSignResponse": [
+   {
+    "name": "unprivileged_reason",
+    "number": 3,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "privileged",
+    "number": 1,
+    "type": "bool",
+    "repeated": false
+   },
+   {
+    "name": "signed",
+    "number": 2,
+    "type": "bool",
+    "repeated": false
+   }
+  ],
+  "WsWebStudySignRequest": [
+   {
+    "name": "verify_data",
+    "number": 1,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "WsWebStudySignResponse": [
+   {
+    "name": "reward_voc",
+    "number": 2,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "reward_card",
+    "number": 3,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "cont_sign_days",
+    "number": 4,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "total_sign_days",
+    "number": 5,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "sign_date",
+    "number": 1,
+    "type": "google.protobuf.Timestamp",
+    "repeated": false
+   }
+  ],
+  "WsWebStudyAdvanceReviewRequest": [
+   {
+    "name": "voc_ids",
+    "number": 2,
+    "type": "string",
+    "repeated": true
+   },
+   {
+    "name": "count",
+    "number": 1,
+    "type": "int32",
+    "repeated": false
+   },
+   {
+    "name": "behind_voc_id",
+    "number": 3,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "WsWebStudyAdvanceReviewResponse": [],
+  "WsWebStudyQueryWordRequest": [
+   {
+    "name": "spelling",
+    "number": 1,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "phrase",
+    "number": 2,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "interpretation",
+    "number": 3,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "WsWebStudyQueryWordResponse": [
+   {
+    "name": "matches",
+    "number": 1,
+    "type": "WsWebStudyQueryWordResponse_Match",
+    "repeated": true
+   }
+  ],
+  "WsWebStudyQueryWordResponse_Match": [
+   {
+    "name": "word",
+    "number": 1,
+    "type": "WebStudyWord",
+    "repeated": false
+   },
+   {
+    "name": "interpretation",
+    "number": 2,
+    "type": "WebStudyInterpretation",
+    "repeated": false
+   },
+   {
+    "name": "is_added",
+    "number": 3,
+    "type": "bool",
+    "repeated": false
+   },
+   {
+    "name": "is_advanceable",
+    "number": 4,
+    "type": "bool",
+    "repeated": false
+   },
+   {
+    "name": "is_addable",
+    "number": 5,
+    "type": "bool",
+    "repeated": false
+   },
+   {
+    "name": "searched_interpretation",
+    "number": 6,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "WsWebStudyAddWordsRequest": [
+   {
+    "name": "by_book",
+    "number": 2,
+    "type": "WsWebStudyAddWordsRequest_ByBook",
+    "repeated": false
+   },
+   {
+    "name": "words",
+    "number": 1,
+    "type": "WsWebStudyAddWordsRequest_Word",
+    "repeated": true
+   }
+  ],
+  "WsWebStudyAddWordsRequest_Word": [
+   {
+    "name": "voc_id",
+    "number": 1,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "WsWebStudyAddWordsRequest_ByBook": [
+   {
+    "name": "method",
+    "number": 2,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "count",
+    "number": 1,
+    "type": "int32",
+    "repeated": false
+   }
+  ],
+  "WsWebStudyAddWordsResponse": [
+   {
+    "name": "added_count",
+    "number": 1,
+    "type": "int32",
+    "repeated": false
+   }
+  ],
+  "WsWebStudyGetContentPreferenceTagsRequest": [],
+  "WsWebStudyGetContentPreferenceTagsResponse": [
+   {
+    "name": "interpretation_tags",
+    "number": 1,
+    "type": "string",
+    "repeated": true
+   },
+   {
+    "name": "phrase_tags",
+    "number": 2,
+    "type": "string",
+    "repeated": true
+   },
+   {
+    "name": "note_types",
+    "number": 3,
+    "type": "string",
+    "repeated": true
+   },
+   {
+    "name": "all_interpretation_tags",
+    "number": 4,
+    "type": "string",
+    "repeated": true
+   },
+   {
+    "name": "all_phrase_tags",
+    "number": 5,
+    "type": "string",
+    "repeated": true
+   },
+   {
+    "name": "all_note_types",
+    "number": 6,
+    "type": "string",
+    "repeated": true
+   }
+  ],
+  "WsWebStudySetContentPreferenceTagsRequest": [
+   {
+    "name": "interpretation_tags",
+    "number": 1,
+    "type": "string",
+    "repeated": true
+   },
+   {
+    "name": "phrase_tags",
+    "number": 2,
+    "type": "string",
+    "repeated": true
+   },
+   {
+    "name": "note_types",
+    "number": 3,
+    "type": "string",
+    "repeated": true
+   }
+  ],
+  "WsWebStudySetContentPreferenceTagsResponse": [],
+  "WsWebStudySearchBooksRequest": [
+   {
+    "name": "keyword",
+    "number": 1,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "WsWebStudySearchBooksResponse": [
+   {
+    "name": "books",
+    "number": 1,
+    "type": "WebStudyBook",
+    "repeated": true
+   }
+  ],
+  "WsWebStudySetStudyBookRequest": [
+   {
+    "name": "book_id",
+    "number": 1,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "WsWebStudySetStudyBookResponse": [],
+  "WsWebStudySetStudySettingsRequest": [
+   {
+    "name": "day_limit",
+    "number": 1,
+    "type": "DayLimit",
+    "repeated": false
+   },
+   {
+    "name": "study_method",
+    "number": 2,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "day_limit_separate_mode",
+    "number": 3,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "study_order",
+    "number": 4,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "review_strategy",
+    "number": 5,
+    "type": "enum",
+    "repeated": false
+   }
+  ],
+  "WsWebStudySetStudySettingsResponse": [],
+  "WsWebStudyGetRecommendBooksRequest": [],
+  "WsWebStudyGetRecommendBooksResponse": [
+   {
+    "name": "catalogs",
+    "number": 1,
+    "type": "WsWebStudyGetRecommendBooksResponse_Catalog",
+    "repeated": true
+   },
+   {
+    "name": "books",
+    "number": 2,
+    "type": "WsWebStudyGetRecommendBooksResponse_Book",
+    "repeated": true
+   }
+  ],
+  "WsWebStudyGetRecommendBooksResponse_Catalog": [
+   {
+    "name": "sub_catalogs",
+    "number": 2,
+    "type": "string",
+    "repeated": true
+   },
+   {
+    "name": "main_catalog",
+    "number": 1,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "WsWebStudyGetRecommendBooksResponse_Book": [
+   {
+    "name": "book_id",
+    "number": 1,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "book_name",
+    "number": 2,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "main_catalog",
+    "number": 3,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "sub_catalog",
+    "number": 4,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "WsWebStudyQuerySearchHistoryRequest": [
+   {
+    "name": "voc_id",
+    "number": 1,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "WsWebStudyQuerySearchHistoryResponse": [
+   {
+    "name": "matches",
+    "number": 1,
+    "type": "WsWebStudyQuerySearchHistoryResponse_Match",
+    "repeated": true
+   }
+  ],
+  "WsWebStudyQuerySearchHistoryResponse_Match": [
+   {
+    "name": "word",
+    "number": 1,
+    "type": "WebStudyWord",
+    "repeated": false
+   },
+   {
+    "name": "interpretation",
+    "number": 2,
+    "type": "WebStudyInterpretation",
+    "repeated": false
+   },
+   {
+    "name": "is_added",
+    "number": 3,
+    "type": "bool",
+    "repeated": false
+   },
+   {
+    "name": "is_advanceable",
+    "number": 4,
+    "type": "bool",
+    "repeated": false
+   },
+   {
+    "name": "is_addable",
+    "number": 5,
+    "type": "bool",
+    "repeated": false
+   }
+  ],
+  "WsSystemReadyRequest": [],
+  "WsSystemReadyResponse": [],
+  "WsSystemPingRequest": [],
+  "WsSystemPingResponse": [],
+  "WsSystemSubscribeTopicsRequest": [
+   {
+    "name": "topics",
+    "number": 1,
+    "type": "string",
+    "repeated": true
+   }
+  ],
+  "WsSystemSubscribeTopicsResponse": [],
+  "WebsocketProtocolError": [
+   {
+    "name": "code",
+    "number": 1,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "message",
+    "number": 2,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "info",
+    "number": 3,
+    "type": "string",
+    "repeated": false
+   }
+  ],
+  "WebsocketProtocolMessage": [
+   {
+    "name": "id",
+    "number": 1,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "reply_id",
+    "number": 2,
+    "type": "string",
+    "repeated": false
+   },
+   {
+    "name": "data",
+    "number": 4,
+    "type": "bytes",
+    "repeated": false
+   },
+   {
+    "name": "event",
+    "number": 3,
+    "type": "enum",
+    "repeated": false
+   },
+   {
+    "name": "errors",
+    "number": 6,
+    "type": "WebsocketProtocolError",
+    "repeated": true
+   },
+   {
+    "name": "success",
+    "number": 5,
+    "type": "bool",
+    "repeated": false
+   }
+  ]
+ },
+ "enums": {
+  "StudyOrder": {
+   "STUDY_ORDER_UNSPECIFIED": 0,
+   "REVIEW_FIRST": 1,
+   "NEW_FIRST": 2,
+   "SHUFFLE": 3
+  },
+  "StudyMethod": {
+   "STUDY_EN_CN": 0,
+   "STUDY_CN_EN": 1
+  },
+  "ReviewStrategy": {
+   "REVIEW_STRATEGY_UNSPECIFIED": 0,
+   "EFFICIENCY": 1,
+   "DIFFICULTY_AVERAGE": 2
+  },
+  "DayLimitMode": {
+   "DAY_LIMIT_MODE_UNSPECIFIED": 0,
+   "DAY_LIMIT_MODE_MERGE": 1,
+   "DAY_LIMIT_MODE_SEPARATE": 2
+  },
+  "DayLimitSeparateMode": {
+   "DAY_LIMIT_SEPARATE_MODE_UNSPECIFIED": 0,
+   "PLANNED": 1,
+   "FILLED": 2
+  },
+  "StudyResponse": {
+   "STUDY_RESPONSE_UNSPECIFIED": 0,
+   "FAMILIAR": 1,
+   "VAGUE": 2,
+   "FORGET": 3,
+   "WELL_FAMILIAR": 4,
+   "CANCEL_WELL_FAMILIAR": 5
+  },
+  "OperationName": {
+   "OPERATION_NAME_UNSPECIFIED": 0,
+   "PREPARE_NEW_DAY": 1,
+   "ADD_WORDS": 2,
+   "DELETE_WORDS": 3,
+   "HANDLE_STUDY_RESPONSE": 4,
+   "CHANGE_STUDY_ORDER": 5,
+   "ADVANCE_REVIEW": 6,
+   "MARK_WELL_FAMILIAR": 7,
+   "UNMARK_WELL_FAMILIAR": 8,
+   "SUSPEND_WORDS": 9,
+   "UNSUSPEND_WORDS": 10,
+   "CHANGE_DAY_LIMIT": 11,
+   "REPLAN_STUDY": 12,
+   "UNDO_REPLAN_STUDY": 13
+  },
+  "StudyOpContextExperimentName": {
+   "STUDY_OP_CONTEXT_EXPERIMENT_NAME_UNSPECIFIED": 0,
+   "EXPERIMENT_LONG_INTERVAL": 1,
+   "EXPERIMENT_REVIEW_ORDER_OVERDUE": 2
+  },
+  "SyncWorkspaceStatus": {
+   "SYNC_WORKSPACE_STATUS_UNSPECIFIED": 0,
+   "CREATED": 1,
+   "READY": 2,
+   "BUSY": 3,
+   "ERROR": 4,
+   "DELETED": 5
+  },
+  "SyncCheckpointFull_ArchiveStatus": {
+   "ARCHIVE_STATUS_UNSPECIFIED": 0,
+   "DELETED": 1,
+   "ARCHIVED": 2,
+   "FAILED": 3
+  },
+  "WebStudyMemoryHistoryItemType": {
+   "HISTORY_UNSPECIFIED": 0,
+   "HISTORY_FAMILIAR": 1,
+   "HISTORY_VAGUE": 2,
+   "HISTORY_FORGET": 3,
+   "HISTORY_WELL_FAMILIAR": 4,
+   "HISTORY_CANCEL_WELL_FAMILIAR": 5,
+   "HISTORY_NEW_WORD": 6,
+   "HISTORY_TODAY_REVIEW": 7,
+   "HISTORY_OVERDUE_PLANNING": 8,
+   "HISTORY_NORMAL_PLANNING": 9,
+   "HISTORY_SUSPEND": 10,
+   "HISTORY_CANCEL_SUSPEND": 11,
+   "HISTORY_POSTPONE": 12
+  },
+  "WebStudyAddWordsMethod": {
+   "ADD_WORDS_METHOD_UNSPECIFIED": 0,
+   "ADD_WORDS_METHOD_SEQUENCE": 1,
+   "ADD_WORDS_METHOD_RANDOM": 2
+  },
+  "NullValue": {
+   "NULL_VALUE": 0
+  },
+  "WsWebStudyPrecheckSignResponse_Reason": {
+   "REASON_UNSPECIFIED": 0,
+   "SIGNED": 1,
+   "UNBOUNDED": 2,
+   "STUDY_TIME_INSUFFICIENT": 3,
+   "STUDY_COUNT_INSUFFICIENT": 4,
+   "STUDY_UNFINISHED": 5
+  },
+  "WebsocketProtocolEvent": {
+   "WEBSOCKET_PROTOCOL_EVENT_UNSPECIFIED": 0,
+   "SYSTEM_READY": 1,
+   "SYSTEM_PING": 2,
+   "SYSTEM_SUBSCRIBE_TOPICS": 3,
+   "WEBSTUDY_INIT_STUDY": 1001,
+   "WEBSTUDY_GET_WORD": 1002,
+   "WEBSTUDY_SUBMIT_RESPONSE": 1003,
+   "WEBSTUDY_EVENT_REVISION_CHANGE": 1004,
+   "WEBSTUDY_DELETE_WORDS": 1005,
+   "WEBSTUDY_GET_STUDY_STATES": 1006,
+   "WEBSTUDY_REVIEW_MORE": 1007,
+   "WEBSTUDY_PRECHECK_SIGN": 1008,
+   "WEBSTUDY_SIGN": 1009,
+   "WEBSTUDY_ADVANCE_REVIEW": 1010,
+   "WEBSTUDY_ADD_WORDS": 1011,
+   "WEBSTUDY_SET_STUDY_SETTINGS": 1012,
+   "WEBSTUDY_QUERY_WORD": 1100,
+   "WEBSTUDY_SEARCH_BOOKS": 1101,
+   "WEBSTUDY_SET_STUDY_BOOK": 1102,
+   "WEBSTUDY_GET_RECOMMEND_BOOKS": 1103,
+   "WEBSTUDY_QUERY_SEARCH_HISTORY": 1104,
+   "WEBSTUDY_GET_CONTENT_PREFERENCE_TAGS": 1121,
+   "WEBSTUDY_SET_CONTENT_PREFERENCE_TAGS": 1122,
+   "DB_SESSION_OPEN_DB": 10001,
+   "DB_SESSION_CLOSE_DB": 10002,
+   "DB_SESSION_EVENT_DB_CLOSED": 10004,
+   "DB_SESSION_QUERY_DB": 10010,
+   "DB_SESSION_STUDY_HANDLE_OPLOG": 11001
+  }
+ }
+}
