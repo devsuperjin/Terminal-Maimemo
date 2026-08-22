@@ -4,18 +4,20 @@ from __future__ import annotations
 
 import asyncio
 import time
+from datetime import datetime
 from typing import Any
 
 from textual import on, work
 from textual.app import ComposeResult
 from textual.binding import Binding
-from textual.containers import Horizontal, Vertical, VerticalScroll
+from textual.containers import ItemGrid, Horizontal, Vertical, VerticalScroll
 from textual.screen import Screen
 from textual.widgets import Button, Footer, Header, Input, Static
 
 from . import audio as audio_mod
 from . import auth as auth_mod
 from . import config as config_mod
+from . import proto
 from .client import MaimemoClient, MaimemoError
 
 # StudyResponse enum values
@@ -165,17 +167,31 @@ class StudyScreen(Screen):
 
     BINDINGS = [
         Binding("space", "reveal", "Answer"),
-        Binding("1", "grade_familiar", "Familiar"),
-        Binding("2", "grade_vague", "Vague"),
-        Binding("3", "grade_forget", "Forget"),
-        Binding("4", "grade_well", "Mastered"),
+        # Keep the footer compact; 2–4 remain active but are covered by the
+        # single "Rate 1-4" entry shown for the 1 key.
+        Binding("1", "grade_familiar", "Rate 1-4"),
+        Binding("2", "grade_vague", "Vague", show=False),
+        Binding("3", "grade_forget", "Forget", show=False),
+        Binding("4", "grade_well", "Mastered", show=False),
         Binding("backspace", "prev_word", "Prev"),
-        Binding("r", "review_more", "More"),
-        Binding("p", "play_audio", "Sound"),
-        Binding("c", "reconnect", "Reconnect"),
-        Binding("l", "logout", "Logout"),
+        Binding("r", "review_more", "More", show=False),
+        Binding("p", "play_audio", "Sound", show=False),
+        Binding("c", "reconnect", "Reconnect", show=False),
+        Binding("l", "logout", "Logout", show=False),
+        Binding("b", "toggle_grade_buttons", "Buttons", show=False),
         Binding("ctrl+q", "quit", "Quit", show=False),
     ]
+
+    MEMORY_HISTORY_COLORS = {
+        1: "#82d9be",
+        2: "#f4c96b",
+        3: "#f2a38f",
+        4: "#82d9be",
+        5: "#aeb6c1",
+        6: "#f2a38f",
+        10: "#8db8f2",
+        11: "#aeb6c1",
+    }
 
     def __init__(self, client: MaimemoClient) -> None:
         super().__init__()
@@ -185,6 +201,7 @@ class StudyScreen(Screen):
         self._shown_at = 0.0
         self._revealed_at = 0.0
         self._busy = False
+        self._show_grade_buttons = bool(config_mod.load_config().get("show_grade_buttons", False))
 
     def compose(self) -> ComposeResult:
         yield Header(show_clock=True)
@@ -193,7 +210,20 @@ class StudyScreen(Screen):
             Static("", id="word", classes="word"),
             Static("", id="phonetics", classes="phonetics"),
             Static("", id="answer", classes="answer"),
+            Horizontal(
+                Button("SPACE · Reveal", id="reveal-button", variant="primary"),
+                id="reveal-controls",
+            ),
+            ItemGrid(
+                Button("Familiar", id="grade-familiar-button", variant="success"),
+                Button("Vague", id="grade-vague-button", variant="warning"),
+                Button("Forget", id="grade-forget-button", variant="error"),
+                Button("Mastered", id="grade-mastered-button", variant="primary"),
+                min_column_width=16,
+                id="grade-buttons",
+            ),
             Static("", id="extra", classes="extra"),
+            Static("", id="history", classes="history"),
             Static("", id="status", classes="status"),
             id="study-box",
         )
@@ -201,6 +231,7 @@ class StudyScreen(Screen):
 
     # ------------------------------------------------------------- lifecycle
     async def on_mount(self) -> None:
+        self._update_grade_buttons()
         self.run_worker(self._watch_connection(), exclusive=True, group="conn")
         self.run_worker(self._setup(), exclusive=True)
 
@@ -263,6 +294,23 @@ class StudyScreen(Screen):
         method = self._setting("study.algorithm.study_method", "EC")
         return 1 if method == "CE" else 0
 
+    def _update_grade_buttons(self) -> None:
+        self.query_one("#reveal-controls", Horizontal).display = self._show_grade_buttons
+        self.query_one("#grade-buttons", ItemGrid).display = self._show_grade_buttons
+        has_word = bool(self.current.get("word"))
+        self.query_one("#reveal-button", Button).disabled = (
+            self._busy or self.revealed or not has_word
+        )
+        for button_id in (
+            "#grade-familiar-button",
+            "#grade-vague-button",
+            "#grade-forget-button",
+            "#grade-mastered-button",
+        ):
+            self.query_one(button_id, Button).disabled = (
+                self._busy or not self.revealed or not has_word
+            )
+
     def _render_word(self) -> None:
         word = self.current.get("word") or {}
         if not word:
@@ -275,6 +323,7 @@ class StudyScreen(Screen):
         )
         self.query_one("#phonetics", Static).update(phon)
         self._render_answer(show=self.revealed)
+        self._update_grade_buttons()
 
     def _render_answer(self, show: bool) -> None:
         if not show:
@@ -299,16 +348,53 @@ class StudyScreen(Screen):
         if predicts:
             days = "/".join(str(p.get("days")) for p in predicts if p.get("days"))
             parts.append(f"Next review: {days} day(s)")
-        mh = self.current.get("memory_history") or {}
-        if mh.get("is_error"):
-            parts.append("[red]memory history error[/]")
-        elif mh.get("study_times"):
-            parts.append(f"Studied {mh.get('study_times')} time(s)")
         self.query_one("#extra", Static).update("  ".join(parts))
+        self._render_history()
+
+    @staticmethod
+    def _format_history_date(value: Any) -> str:
+        if not isinstance(value, (int, float)) or value <= 0:
+            return ""
+        return datetime.fromtimestamp(value).strftime("%Y-%m-%d")
+
+    @staticmethod
+    def _format_history_day(day: Any) -> str:
+        # The API uses -1 as a calendar marker for activity recorded today.
+        if day == -1:
+            return "Today"
+        return f"D{day}" if day is not None else "D?"
+
+    def _render_history(self) -> None:
+        """Render memory history as compact colored markers."""
+        history = self.current.get("memory_history") or {}
+        lines: list[str] = []
+        first = self._format_history_date(history.get("first_study_date"))
+        last = self._format_history_date(history.get("last_study_date"))
+        times = history.get("study_times")
+        if first or last or times:
+            date_range = " → ".join(part for part in (first, last) if part)
+            summary = date_range or "Memory history"
+            if times:
+                summary += f"  · {times} review(s)"
+            lines.append(f"[bold #d5d9e2]Memory history[/]  {summary}")
+        if history.get("is_error"):
+            lines.append("[red]Memory history unavailable[/]")
+        markers: list[str] = []
+        for item in history.get("items") or []:
+            kind = item.get("type", 0)
+            if isinstance(kind, str):
+                kind = proto.enum_value("WebStudyMemoryHistoryItemType", kind)
+            color = self.MEMORY_HISTORY_COLORS.get(kind, "#b8c0cc")
+            day_text = self._format_history_day(item.get("day"))
+            markers.append(f"[black on {color}] {day_text} [/]")
+        if markers:
+            lines.append(" ".join(markers))
+        self.query_one("#history", Static).update("  ".join(lines))
 
     # ------------------------------------------------------------- actions
     async def _load_word(self, back: bool = False) -> None:
         self._busy = True
+        self._update_grade_buttons()
         try:
             resp = await self.client.get_word(back=back)
             self.current = resp
@@ -323,6 +409,7 @@ class StudyScreen(Screen):
             _toast(self, str(exc), "Load failed")
         finally:
             self._busy = False
+            self._update_grade_buttons()
 
     def action_reveal(self) -> None:
         if self.revealed or self._busy:
@@ -333,17 +420,16 @@ class StudyScreen(Screen):
         self._revealed_at = time.monotonic()
         self._render_answer(show=True)
         self._render_extra()
+        self._update_grade_buttons()
 
     async def _grade(self, response: int) -> None:
-        if self._busy or not self.current:
+        # A grade is only valid after the user explicitly reveals the answer.
+        # Do not implicitly reveal and submit when a number key is pressed.
+        if self._busy or not self.current or not self.revealed:
             return
         word = self.current.get("word") or {}
         if not word:
             return
-        if not self.revealed:
-            self.revealed = True
-            self._revealed_at = time.monotonic()
-            self._render_answer(show=True)
         recall_ms = int((self._revealed_at - self._shown_at) * 1000)
         study_ms = int((time.monotonic() - self._revealed_at) * 1000)
         self._busy = True
@@ -385,6 +471,35 @@ class StudyScreen(Screen):
 
     def action_grade_well(self) -> None:
         self.run_worker(self._grade(RESP_WELL_FAMILIAR), exclusive=True, group="grade")
+
+    @on(Button.Pressed, "#grade-familiar-button")
+    def _press_grade_familiar(self) -> None:
+        self.action_grade_familiar()
+
+    @on(Button.Pressed, "#grade-vague-button")
+    def _press_grade_vague(self) -> None:
+        self.action_grade_vague()
+
+    @on(Button.Pressed, "#grade-forget-button")
+    def _press_grade_forget(self) -> None:
+        self.action_grade_forget()
+
+    @on(Button.Pressed, "#grade-mastered-button")
+    def _press_grade_mastered(self) -> None:
+        self.action_grade_well()
+
+    @on(Button.Pressed, "#reveal-button")
+    def _press_reveal(self) -> None:
+        self.action_reveal()
+
+    def action_toggle_grade_buttons(self) -> None:
+        cfg = config_mod.load_config()
+        self._show_grade_buttons = not bool(cfg.get("show_grade_buttons", False))
+        cfg["show_grade_buttons"] = self._show_grade_buttons
+        config_mod.save_config(cfg)
+        self._update_grade_buttons()
+        state = "enabled" if self._show_grade_buttons else "disabled"
+        _toast(self, f"Grading buttons {state}", "Study controls", "information")
 
     def action_prev_word(self) -> None:
         self.run_worker(self._load_word(back=True), exclusive=True, group="grade")

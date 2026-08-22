@@ -102,9 +102,75 @@ Screen {
     padding: 0 1;
 }
 
+#reveal-controls {
+    width: 100%;
+    height: 5;
+    margin: 1 0 0 0;
+}
+
+#reveal-button {
+    width: 100%;
+    height: 5;
+    content-align: center middle;
+    color: #ffffff;
+    background: #2d6794;
+    border: tall #7ae0ff;
+    text-style: bold;
+}
+
+#grade-buttons {
+    height: auto;
+    margin: 1 0 0 0;
+    width: 100%;
+    grid-rows: 5;
+}
+
+#grade-buttons Button {
+    width: 1fr;
+    height: 5;
+    margin: 0 1 1 0;
+    content-align: center middle;
+    color: #ffffff;
+    text-style: bold;
+}
+
+#grade-familiar-button {
+    background: #2d7d65;
+    border: tall #82d9be;
+}
+
+#grade-vague-button {
+    background: #8a6c27;
+    border: tall #f4c96b;
+}
+
+#grade-forget-button {
+    background: #9a4f3e;
+    border: tall #f2a38f;
+}
+
+#grade-mastered-button {
+    background: #2d6794;
+    border: tall #7ae0ff;
+}
+
+#reveal-button:disabled,
+#grade-buttons Button:disabled {
+    color: #aeb6c1;
+    background: #263042;
+    border: tall #4a5568;
+    text-opacity: 1;
+}
+
 #extra.extra {
     color: $text-muted;
     margin-top: 1;
+}
+
+#history.history {
+    color: $text-muted;
+    margin-top: 1;
+    width: 100%;
 }
 
 #status.status {

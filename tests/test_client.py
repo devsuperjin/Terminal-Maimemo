@@ -93,4 +93,20 @@ raw = client._encode_frame(
 frame = client._decode_frame(raw)
 check("study states frame", frame["event"] == "WEBSTUDY_GET_STUDY_STATES")
 
+# 9. get-word response keeps the nested memory history from the API
+raw = client._encode_frame(
+    "WEBSTUDY_GET_WORD",
+    "response",
+    reply_id="0.5",
+    data={
+        "memory_history": {
+            "study_times": 2,
+            "items": [{"type": 3, "day": 1}, {"type": 1, "day": 2}],
+        }
+    },
+)
+frame = client._decode_frame(raw)
+history = frame["data"]["memory_history"]
+check("memory history decoded", history["study_times"] == 2 and history["items"][1]["day"] == 2)
+
 print(f"\nALL {passed} CHECKS PASSED")

@@ -345,6 +345,7 @@ class MaimemoClient:
 
     # ------------------------------------------------------------- study API
     async def get_word(self, back: bool = False) -> dict[str, Any]:
+        """Fetch the current word, including its decoded memory history."""
         data = await self.invoke("WEBSTUDY_GET_WORD", {"back": back})
         return data or {}
 
