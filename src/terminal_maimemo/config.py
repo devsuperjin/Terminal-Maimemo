@@ -63,6 +63,7 @@ DEFAULT_CONFIG: dict = {
     "study_method": "EC",  # EC = English->Chinese, CE = Chinese->English
     "review_more_count": 10,
     "show_grade_buttons": False,
+    "audio_enabled": True,  # Enable/disable audio playback
     "sid": "",
     "user": {},
 }

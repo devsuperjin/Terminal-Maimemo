@@ -176,6 +176,7 @@ class StudyScreen(Screen):
         Binding("backspace", "prev_word", "Prev"),
         Binding("r", "review_more", "More", show=False),
         Binding("p", "play_audio", "Sound", show=False),
+        Binding("m", "toggle_audio", "Mute", show=False),
         Binding("c", "reconnect", "Reconnect", show=False),
         Binding("l", "logout", "Logout", show=False),
         Binding("b", "toggle_grade_buttons", "Buttons", show=False),
@@ -403,6 +404,12 @@ class StudyScreen(Screen):
             self._render_word()
             self._render_extra()
             self._status("")
+            # Prefetch audio in background
+            word = resp.get("word") or {}
+            accent = self._setting("app.speech.setting.voc.accent", "")
+            url = audio_mod.choose_pronunciation(word, accent)
+            if url:
+                self.run_worker(audio_mod.prefetch_mp3(url), exclusive=False, group="prefetch")
             self.run_worker(self._autoplay(), exclusive=False, group="audio")
         except MaimemoError as exc:
             self._status(f"Failed to load word: {exc}", error=True)
@@ -451,6 +458,12 @@ class StudyScreen(Screen):
                 self._render_word()
                 self._render_extra()
                 self._status("")
+                # Prefetch audio for next word
+                next_word = nxt.get("word") or {}
+                accent = self._setting("app.speech.setting.voc.accent", "")
+                url = audio_mod.choose_pronunciation(next_word, accent)
+                if url:
+                    self.run_worker(audio_mod.prefetch_mp3(url), exclusive=False, group="prefetch")
                 self.run_worker(self._autoplay(), exclusive=False, group="audio")
             else:
                 await self._load_word()
@@ -522,7 +535,20 @@ class StudyScreen(Screen):
     def action_play_audio(self) -> None:
         self.run_worker(self._play_audio(silent=False), exclusive=True, group="audio")
 
+    def action_toggle_audio(self) -> None:
+        """Toggle audio playback on/off."""
+        cfg = config_mod.load_config()
+        current = cfg.get("audio_enabled", True)
+        cfg["audio_enabled"] = not current
+        config_mod.save_config(cfg)
+        status = "enabled" if not current else "disabled"
+        _toast(self, f"Audio {status}", "Audio", "information")
+
     async def _play_audio(self, silent: bool) -> None:
+        # Check if audio is enabled in config
+        cfg = config_mod.load_config()
+        if not cfg.get("audio_enabled", True):
+            return
         word = self.current.get("word") or {}
         accent = self._setting("app.speech.setting.voc.accent", "")
         url = audio_mod.choose_pronunciation(word, accent)

@@ -38,6 +38,9 @@ log = logging.getLogger(__name__)
 # serialize playback so overlapping words do not stack audio
 _play_lock = asyncio.Lock()
 
+# Cache whether miniaudio device is available to avoid repeated slow failures.
+_miniaudio_available: bool | None = None
+
 
 def choose_pronunciation(word: dict, accent: str = "") -> str | None:
     """Pick the best pronunciation URL for a word dict.
@@ -178,62 +181,22 @@ def _play_decoded(decoded) -> bool:
     if not nch or not rate:
         return False
 
-    # 1) system audio framework first — respects the user's default device
-    #    (PipeWire / pipewire-pulse / ALSA default, e.g. a Jabra headset).
+    # Use system audio framework — respects the user's default device
+    # (PipeWire / pipewire-pulse / ALSA default, e.g. a Jabra headset).
     tmp = Path(tempfile.gettempdir()) / f"maimemo_pron_{int(time.time() * 1000)}.wav"
     try:
         _decoded_to_wav(tmp, decoded)
     except Exception as exc:
         log.warning("wav conversion failed: %s", exc)
-    else:
+        return False
+    try:
         if _system_play_wav(str(tmp)):
             return True
-
-    # 2) miniaudio in-process fallback (no temp file; uses miniaudio's own
-    #    ALSA/PulseAudio backends).
-    duration = len(decoded.samples) / (rate * nch)
-    fmt = (
-        miniaudio.SampleFormat.SIGNED16
-        if width == 2
-        else miniaudio.SampleFormat.FLOAT32
-    )
-    chunk = 4096 * nch
-    samples = decoded.samples
-
-    def gen():
-        i = 0
-        while i < len(samples):
-            yield samples[i : i + chunk]
-            i += chunk
-
-    device = None
-    try:
-        device = miniaudio.PlaybackDevice(
-            output_format=fmt, nchannels=nch, sample_rate=rate
-        )
-    except Exception as exc:
-        log.warning("miniaudio device unavailable: %s", exc)
-    if device is not None:
+    finally:
         try:
-            device.start(gen())
-            time.sleep(duration + 0.3)
-            return True
-        except Exception as exc:
-            log.warning("miniaudio playback failed: %s", exc)
-        finally:
-            try:
-                device.stop()
-            except Exception:
-                pass
-            try:
-                device.close()
-            except Exception:
-                pass
-
-    try:
-        tmp.unlink(missing_ok=True)
-    except Exception:
-        pass
+            tmp.unlink(missing_ok=True)
+        except Exception:
+            pass
     return False
 
 
@@ -246,10 +209,33 @@ def _play_bytes(mp3_bytes: bytes) -> bool:
     return _play_decoded(decoded)
 
 
+# Pre-download cache for audio files
+_audio_cache: dict[str, bytes] = {}
+
+
+async def prefetch_mp3(url: str) -> None:
+    """Pre-download an MP3 file and cache it for later playback."""
+    if not url or url in _audio_cache:
+        return
+    try:
+        async with httpx.AsyncClient(timeout=15) as client:
+            resp = await client.get(url)
+            resp.raise_for_status()
+            _audio_cache[url] = resp.content
+            log.info("audio prefetched: %s", url[:60])
+    except Exception as exc:
+        log.warning("audio prefetch failed: %s", exc)
+
+
 async def play_mp3(url: str) -> bool:
     """Download and play an mp3 URL. Returns True on success."""
     if not url:
         return False
+    # Use cached data if available
+    if url in _audio_cache:
+        mp3_data = _audio_cache.pop(url)
+        async with _play_lock:
+            return await asyncio.to_thread(_play_bytes, mp3_data)
     try:
         async with httpx.AsyncClient(timeout=15) as client:
             resp = await client.get(url)
@@ -259,6 +245,51 @@ async def play_mp3(url: str) -> bool:
         return False
     async with _play_lock:
         return await asyncio.to_thread(_play_bytes, resp.content)
+
+
+# ---------------------------------------------------------------------------
+# pre-flight check
+# ---------------------------------------------------------------------------
+
+def check_miniaudio_available() -> bool:
+    """Check if miniaudio PlaybackDevice can be created.
+    
+    This should be called at app startup to cache the result so that playback
+    does not have to wait for the device probe each time.
+    Runs the actual probe in a thread so it cannot block the caller for long.
+    """
+    global _miniaudio_available
+    if _miniaudio_available is not None:
+        return _miniaudio_available
+
+    def _probe() -> bool:
+        try:
+            device = miniaudio.PlaybackDevice(
+                output_format=miniaudio.SampleFormat.SIGNED16,
+                nchannels=1,
+                sample_rate=44100,
+            )
+            device.close()
+            return True
+        except Exception as exc:
+            log.info("miniaudio pre-check: unavailable — %s", exc)
+            return False
+
+    import concurrent.futures
+    try:
+        with concurrent.futures.ThreadPoolExecutor() as executor:
+            future = executor.submit(_probe)
+            result = future.result(timeout=0.5)
+            _miniaudio_available = result
+            if result:
+                log.info("miniaudio pre-check: available")
+    except concurrent.futures.TimeoutError:
+        _miniaudio_available = False
+        log.info("miniaudio pre-check: timed out, disabling miniaudio")
+    except Exception as exc:
+        _miniaudio_available = False
+        log.info("miniaudio pre-check: error — %s", exc)
+    return _miniaudio_available
 
 
 # ---------------------------------------------------------------------------
