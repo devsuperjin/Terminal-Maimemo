@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+import re
 import time
 from datetime import datetime
 from typing import Any
@@ -32,6 +33,19 @@ GRADE_LABELS = {
     RESP_FORGET: ("Forget", "3"),
     RESP_WELL_FAMILIAR: ("Mastered", "4"),
 }
+
+
+_BRACKET = re.compile(r"(\\*)\[")
+
+
+def _esc(value: Any) -> str:
+    """Make text from the API safe for textual markup.
+
+    Word data is plain text: a stray ``[/]`` or ``[url=…]`` inside an
+    interpretation, phrase or note would otherwise make ``Static.update``
+    raise ``MarkupError`` and crash the study screen.
+    """
+    return _BRACKET.sub(lambda m: "\\" * (len(m.group(1)) + 1) + "[", str(value))
 
 
 def _toast(screen: Screen, message: str, title: str, severity: str = "error") -> None:
@@ -156,7 +170,7 @@ class LoginScreen(Screen):
 
     def _status(self, text: str, error: bool = False) -> None:
         w = self.query_one("#login-status", Static)
-        w.update(f"[{'red' if error else 'green'}]{text}[/]")
+        w.update(f"[{'red' if error else 'green'}]{_esc(text)}[/]")
 
     def action_quit(self) -> None:
         self.app.exit()  # type: ignore[attr-defined]
@@ -267,14 +281,14 @@ class StudyScreen(Screen):
     # ------------------------------------------------------------- helpers
     def _status(self, text: str, error: bool = False) -> None:
         color = "red" if error else "green"
-        self.query_one("#status", Static).update(f"[{color}]{text}[/]")
+        self.query_one("#status", Static).update(f"[{color}]{_esc(text)}[/]")
 
     def _render_states(self, states: dict[str, Any]) -> None:
         book = states.get("study_book") or {}
         prog = states.get("study_progress") or {}
         parts = []
         if book:
-            parts.append(f"Book: {book.get('name') or book.get('catalog_name') or '?'}")
+            parts.append(f"Book: {_esc(book.get('name') or book.get('catalog_name') or '?')}")
         if prog:
             parts.append(f"Progress: {prog.get('finished', 0)}/{prog.get('total', 0)}")
         if states.get("learned_count") is not None:
@@ -318,9 +332,9 @@ class StudyScreen(Screen):
             self.query_one("#word", Static).update("[yellow](no word data)[/]")
             return
         spelling = word.get("spelling", "")
-        self.query_one("#word", Static).update(f"[bold #7ae0ff]{spelling}[/]")
+        self.query_one("#word", Static).update(f"[bold #7ae0ff]{_esc(spelling)}[/]")
         phon = " ".join(
-            f"[dim]{p}[/]" for p in (word.get("phonetic_us"), word.get("phonetic_uk")) if p
+            f"[dim]{_esc(p)}[/]" for p in (word.get("phonetic_us"), word.get("phonetic_uk")) if p
         )
         self.query_one("#phonetics", Static).update(phon)
         self._render_answer(show=self.revealed)
@@ -332,12 +346,14 @@ class StudyScreen(Screen):
             return
         lines: list[str] = []
         for it in self.current.get("interpretations", []):
-            tags = "".join(f"[{t}]" for t in it.get("tags", []))
-            lines.append(f"{tags} {it.get('interpretation', '')}")
+            tags = "".join(_esc(f"[{t}]") for t in it.get("tags", []))
+            lines.append(f"{tags} {_esc(it.get('interpretation', ''))}")
         for ph in self.current.get("phrases", []):
-            lines.append(f"[cyan]{ph.get('phrase', '')}[/] — {ph.get('interpretation', '')}")
+            lines.append(
+                f"[cyan]{_esc(ph.get('phrase', ''))}[/] — {_esc(ph.get('interpretation', ''))}"
+            )
         for n in self.current.get("notes", []):
-            lines.append(f"[magenta]{n.get('type', '')}:[/] {n.get('note', '')}")
+            lines.append(f"[magenta]{_esc(n.get('type', ''))}:[/] {_esc(n.get('note', ''))}")
         self.query_one("#answer", Static).update("\n".join(lines) or "[dim](no meaning)[/]")
 
     def _render_extra(self) -> None:
